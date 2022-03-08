@@ -1019,7 +1019,7 @@ class CrudMain extends Component
     // I don't know what this will do ...
     public function render()
     {
-        return view('livewire.views.crud-main.index');
+        return view('vendor.timsteinhauer.livewirecrud.crud-main.index');
     }
 
 

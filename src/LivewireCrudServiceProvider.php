@@ -22,7 +22,7 @@ class LivewireCrudServiceProvider extends ServiceProvider
     {
         $this->app->afterResolving(BladeCompiler::class, function () {
             if (class_exists(Livewire::class)) {
-                Livewire::component('crud-index', CrudMain::class);
+            //    Livewire::component('crud-index', CrudMain::class);
             }
         });
     }
@@ -73,7 +73,7 @@ class LivewireCrudServiceProvider extends ServiceProvider
             Blade::component('livewirecrud::forms.field', 'crud-field');
 
             // components
-            $this->registerComponent('index');
+            $this->registerComponent('badges');
         });
     }
 
