@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Telescope\Console;
+namespace Timsteinhauer\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
