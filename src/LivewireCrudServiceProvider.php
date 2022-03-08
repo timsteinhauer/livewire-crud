@@ -37,7 +37,6 @@ class LivewireCrudServiceProvider extends ServiceProvider
 
         $this->configureComponents();
         $this->configurePublishing();
-        $this->configureCommands();
 
     }
 
@@ -85,22 +84,6 @@ class LivewireCrudServiceProvider extends ServiceProvider
 
     }
 
-
-    /**
-     * Configure the commands offered by the application.
-     *
-     * @return void
-     */
-    protected function configureCommands()
-    {
-        if (! $this->app->runningInConsole()) {
-            return;
-        }
-
-        $this->commands([
-            Console\InstallCommand::class,
-        ]);
-    }
 
 
 }
