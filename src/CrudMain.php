@@ -731,7 +731,7 @@ class CrudMain extends Component
             }
         }
 
-        return view("templates.components." . $default["layout"], ["items" => $items, 'color' => $default["color"]]);
+        return view("vendor.timsteinhauer.livewirecrud.components." . $default["layout"], ["items" => $items, 'color' => $default["color"]]);
     }
 
     // End of:  Relationship Section
