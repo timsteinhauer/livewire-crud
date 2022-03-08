@@ -353,7 +353,7 @@ class CrudMain extends Component
     public array $crudAttributes = [];
 
     // path to livewire views
-    public string $path = "livewire.extends.crud-main";
+    public string $path = "vendor.timsteinhauer.livewirecrud.crud-main";
 
     // path to the folder with all child classes views
     public string $childPath = "cruds."; // see mount()!
