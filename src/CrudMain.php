@@ -935,7 +935,7 @@ class CrudMain extends Component
         }
 
         // set child classes path
-        $this->childPath .= $this->model . '-crud.override';
+        $this->childPath .= $this->model . '-crud';
 
         // set wordings
         $this->wordings["name"] = $this->singular;
