@@ -19,7 +19,6 @@ class LivewireCrudServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        echo "register";
         $this->app->afterResolving(BladeCompiler::class, function () {
             if (class_exists(Livewire::class)) {
                 Livewire::component('crud-index', CrudMain::class);
@@ -34,13 +33,11 @@ class LivewireCrudServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        echo "boot";
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'livewirecrud');
 
         $this->configureComponents();
         $this->configurePublishing();
-
-        # $this->configureCommands();
+        $this->configureCommands();
 
     }
 
