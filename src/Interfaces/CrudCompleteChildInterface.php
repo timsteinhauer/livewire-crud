@@ -1,6 +1,6 @@
 <?php
 
-namespace Timsteinhauer\LivewireCurd\Interfaces;
+namespace Timsteinhauer\LivewireCrud\Interfaces;
 
 
 use Illuminate\Database\Eloquent\Builder;

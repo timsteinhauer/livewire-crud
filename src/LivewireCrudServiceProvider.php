@@ -1,6 +1,6 @@
 <?php
 
-namespace Timsteinhauer\LivewireCurd;
+namespace Timsteinhauer\LivewireCrud;
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\RedirectResponse;

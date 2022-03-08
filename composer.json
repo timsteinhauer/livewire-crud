@@ -24,7 +24,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Timsteinhauer\\LivewireCurd\\": "src/"
+      "Timsteinhauer\\LivewireCrud\\": "src/"
     }
   },
   "extra": {
@@ -33,7 +33,7 @@
     },
     "laravel": {
       "providers": [
-        "Timsteinhauer\\LivewireCurd\\JetstreamServiceProvider"
+        "Timsteinhauer\\LivewireCrud\\JetstreamServiceProvider"
       ]
     }
   },

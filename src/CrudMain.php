@@ -1,6 +1,6 @@
 <?php
 
-namespace Timsteinhauer\LivewireCurd;
+namespace Timsteinhauer\LivewireCrud;
 
 use Carbon\Carbon;
 use Livewire\Component;
