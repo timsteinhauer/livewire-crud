@@ -42,7 +42,7 @@ class LivewireCrudServiceProvider extends ServiceProvider
 
         $this->configurePublishing();
 
-        Artisan::call('livewirecrud:install');
+        Artisan::call('vendor:publish --tag=livewirecrud-views');
 
     }
 
@@ -53,11 +53,11 @@ class LivewireCrudServiceProvider extends ServiceProvider
      */
     protected function registerCommands()
     {
-        if ($this->app->runningInConsole()) {
+        /*if ($this->app->runningInConsole()) {
             $this->commands([
                 Console\InstallCommand::class,
             ]);
-        }
+        }*/
     }
 
     /**
