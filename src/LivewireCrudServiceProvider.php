@@ -36,7 +36,8 @@ class LivewireCrudServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'livewirecrud');
 
         $this->configureComponents();
-        $this->configurePublishing();
+
+        $this->publishing();
 
     }
 
@@ -73,7 +74,7 @@ class LivewireCrudServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function configurePublishing()
+    protected function publishing()
     {
         if (! $this->app->runningInConsole()) {
             return;
@@ -82,6 +83,7 @@ class LivewireCrudServiceProvider extends ServiceProvider
             __DIR__.'/../resources/views' => resource_path('views/vendor/timsteinhauer/livewirecrud'),
         ], 'livewirecrud-views');
 
+        $this->callSilent('vendor:publish', ['--tag' => 'livewirecrud-views']);
     }
 
 
