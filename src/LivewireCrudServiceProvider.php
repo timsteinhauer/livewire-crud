@@ -2,28 +2,12 @@
 
 namespace Timsteinhauer\LivewireCurd;
 
-use App\Http\Middleware\HandleInertiaRequests;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
-use Inertia\Inertia;
-use Laravel\Fortify\Fortify;
-use Laravel\Jetstream\Http\Livewire\ApiTokenManager;
-use Laravel\Jetstream\Http\Livewire\CreateTeamForm;
-use Laravel\Jetstream\Http\Livewire\DeleteTeamForm;
-use Laravel\Jetstream\Http\Livewire\DeleteUserForm;
-use Laravel\Jetstream\Http\Livewire\LogoutOtherBrowserSessionsForm;
-use Laravel\Jetstream\Http\Livewire\NavigationMenu;
-use Laravel\Jetstream\Http\Livewire\TeamMemberManager;
-use Laravel\Jetstream\Http\Livewire\TwoFactorAuthenticationForm;
-use Laravel\Jetstream\Http\Livewire\UpdatePasswordForm;
-use Laravel\Jetstream\Http\Livewire\UpdateProfileInformationForm;
-use Laravel\Jetstream\Http\Livewire\UpdateTeamNameForm;
-use Laravel\Jetstream\Http\Middleware\ShareInertiaData;
 use Livewire\Livewire;
 
 class LivewireCrudServiceProvider extends ServiceProvider
@@ -39,12 +23,7 @@ class LivewireCrudServiceProvider extends ServiceProvider
 
         $this->app->afterResolving(BladeCompiler::class, function () {
             if (config('jetstream.stack') === 'livewire' && class_exists(Livewire::class)) {
-                Livewire::component('navigation-menu', NavigationMenu::class);
-                Livewire::component('profile.update-profile-information-form', UpdateProfileInformationForm::class);
-                Livewire::component('profile.update-password-form', UpdatePasswordForm::class);
-                Livewire::component('profile.two-factor-authentication-form', TwoFactorAuthenticationForm::class);
-                Livewire::component('profile.logout-other-browser-sessions-form', LogoutOtherBrowserSessionsForm::class);
-                Livewire::component('profile.delete-user-form', DeleteUserForm::class);
+                Livewire::component('crud-index', CrudMain::class);
 
             }
         });
@@ -74,9 +53,6 @@ class LivewireCrudServiceProvider extends ServiceProvider
     protected function configureComponents()
     {
         $this->callAfterResolving(BladeCompiler::class, function () {
-
-            // main
-            Blade::component('livewirecrud::crud-main.index', 'crud-index');
 
             // form field
             Blade::component('livewirecrud::forms.field', 'crud-field');
