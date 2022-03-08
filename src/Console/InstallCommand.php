@@ -1,6 +1,6 @@
 <?php
 
-namespace Timsteinhauer\Console;
+namespace Timsteinhauer\LivewireCrud\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
