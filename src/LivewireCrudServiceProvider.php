@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Livewire\Livewire;
+use Illuminate\Support\Facades\Artisan;
 
 class LivewireCrudServiceProvider extends ServiceProvider
 {
@@ -35,10 +36,28 @@ class LivewireCrudServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'livewirecrud');
 
+        $this->registerCommands();
+
         $this->configureComponents();
 
-        $this->publishing();
+        $this->configurePublishing();
 
+        Artisan::call('livewirecrud:install');
+
+    }
+
+    /**
+     * Register the package's commands.
+     *
+     * @return void
+     */
+    protected function registerCommands()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                Console\InstallCommand::class,
+            ]);
+        }
     }
 
     /**
@@ -74,7 +93,7 @@ class LivewireCrudServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function publishing()
+    protected function configurePublishing()
     {
         if (! $this->app->runningInConsole()) {
             return;
@@ -83,7 +102,6 @@ class LivewireCrudServiceProvider extends ServiceProvider
             __DIR__.'/../resources/views' => resource_path('views/vendor/timsteinhauer/livewirecrud'),
         ], 'livewirecrud-views');
 
-        $this->callSilent('vendor:publish', ['--tag' => 'livewirecrud-views']);
     }
 
 
