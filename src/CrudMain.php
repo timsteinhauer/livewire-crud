@@ -257,6 +257,20 @@ class CrudMain extends Component
     // overrideable methods
     //
 
+    protected function addCallableRules(): array
+    {
+        // add your callable Rules here
+        return [
+            "create" => [],
+            /*
+                "create" => [
+                    "form.field_key" => function ($attribute, $value, $fail) { .. },
+                ],
+            */
+            "edit" => [],
+        ];
+    }
+
     public function create($form): void
     {
         // create new entity through eloquent
@@ -409,6 +423,42 @@ class CrudMain extends Component
     // Helper Methods Section                               <---------------------------------
     //
 
+    protected function getRules()
+    {
+        $rules = [];
+        $this->loadCallableRules();
+
+        if (isset($this->crudRules[$this->currentPage])) {
+            $rules = $this->crudRules[$this->currentPage];
+        }
+
+        if (isset($this->additionalRules[$this->currentPage])) {
+            $additionalRules = $this->additionalRules[$this->currentPage];
+
+            foreach ($additionalRules as $key => $rule){
+
+                if( isset($rules[$key]) ){
+                    //add
+                    if( is_array($rule)){
+                        foreach ($rule as $r){
+                            $rules[$key][] = $r;
+                        }
+                    }else{
+                        $rules[$key][] = $rule;
+                    }
+                }else{
+                    // set
+                    $rules[$key] = $rule;
+                }
+            }
+        }
+
+        #dd($this->crudRules, $this->additionalRules, $rules);
+
+        return $rules;
+    }
+
+
     //
     // add hooks to Crud Main
     //
@@ -557,6 +607,14 @@ class CrudMain extends Component
      */
     protected function addFormField($key, $type, $title, array|string $rules = [], $config = []): void
     {
+        if (isset($rules["create"]) && !is_array($rules["create"])) {
+            dd("Die Angabe der rules für das Feld " . $title . " muss unter dem Key create als Array erfolgen!");
+        }
+
+        if (isset($rules["edit"]) && !is_array($rules["edit"])) {
+            dd("Die Angabe der rules für das Feld " . $title . " muss unter dem Key edit als Array erfolgen!");
+        }
+
         $config = $this->prepareRelationshipConfig($config);
 
         $this->fields[$key] = [
@@ -915,11 +973,10 @@ class CrudMain extends Component
     // validate only the rules Array for current page, if we have some rules.
     protected function validateCrud()
     {
-
-        $rules = $this->crudRules[$this->currentPage];
-        $attributes = $this->crudAttributes;
+        $rules = $this->getRules();
 
         if (!empty($rules)) {
+            $attributes = $this->crudAttributes;
             $this->validate($rules, [], $attributes);
         }
     }
@@ -1013,9 +1070,9 @@ class CrudMain extends Component
 
         // add live validation on updated
         if ($this->currentPage == "create" || $this->currentPage == "edit") {
-            $rules = $this->crudRules[$this->currentPage];
-            $attributes = $this->crudAttributes;
+            $rules = $this->getRules();
             if (!empty($rules) && isset($rules[$propName])) {
+                $attributes = $this->crudAttributes;
                 $this->validateOnly($propName, $rules, [], $attributes);
             }
         }
@@ -1297,6 +1354,32 @@ class CrudMain extends Component
 
         $this->crudRules = $rules;
         $this->crudAttributes = $attributes;
+    }
+
+    //
+    // Callable Rules make big problems, so we use a dedicated method to load them from the child class on each call
+    //
+    protected function loadCallableRules()
+    {
+        $callableRules = $this->addCallableRules();
+
+        foreach (["create", "edit"] as $view) {
+            if (!empty($callableRules[$view])) {
+
+                foreach ($callableRules[$view] as $key => $rules) {
+
+                    if (isset($this->additionalRules[$view])) {
+                        // add rules
+                        foreach ($rules as $rule) {
+                            $this->additionalRules[$view][$key][] = $rule;
+                        }
+                    } else {
+                        // set rules
+                        $this->additionalRules[$view][$key] = $rules;
+                    }
+                }
+            }
+        }
     }
 
     //
