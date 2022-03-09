@@ -105,6 +105,11 @@ class CrudMain extends Component
     // route to detail page
     public string $detailRoute = "";
 
+    // array for additional validation rules for every page scope / type
+    protected array $additionalRules = [
+        "create" => [],
+        "edit" => [],
+    ];
 
     //
     // handling abilities
@@ -1279,6 +1284,16 @@ class CrudMain extends Component
             $attributes["form." . $key] = $field["title"];
 
         }
+
+        $rules["create"] = array_merge(
+            $this->additionalRules["create"],
+            $rules["create"],
+        );
+
+        $rules["edit"] = array_merge(
+            $this->additionalRules["edit"],
+            $rules["edit"],
+        );
 
         $this->crudRules = $rules;
         $this->crudAttributes = $attributes;
