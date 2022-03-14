@@ -42,7 +42,7 @@ class LivewireCrudServiceProvider extends ServiceProvider
 
         $this->configurePublishing();
 
-        Artisan::call('vendor:publish --tag=livewirecrud-views');
+
 
     }
 
