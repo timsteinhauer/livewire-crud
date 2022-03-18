@@ -133,6 +133,9 @@ class CrudMain extends Component
     // default index layout style
     public string $indexLayout = "table"; // "table" or "cards"
 
+    // styling for subpages
+    public string $pageStyle = "page"; // "page" or "modal"
+
     // allow layout change
     public bool $allowLayoutChange = false;
 
