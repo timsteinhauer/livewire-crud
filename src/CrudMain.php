@@ -241,6 +241,17 @@ class CrudMain extends Component
         "card_action_class" => "card-footer text-center",
         // colors
         "filter_active_color" => "text-danger",
+        //
+        // Modal Styles
+        //
+        "modal_class" => "",
+        "modal_style" => "",
+        "modal_dialog_class" => "",
+        "modal_dialog_style" => "",
+        "modal_content_class" => "",
+        "modal_content_style" => "",
+        "modal_body_start" => "<div class='modal-body'>",
+        "modal_body_end" => "</div>",
     ];
 
     //
