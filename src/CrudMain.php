@@ -1073,7 +1073,7 @@ class CrudMain extends Component
 
         if (method_exists($this, 'onUpdate')) {
             // call Child-Class custom updated handling
-            $this->onUpdate();
+            $this->onUpdate($propName, $propValue);
         }
 
         $onUpdateProp = 'onUpdate_' . str_replace('.', '_', $propName);
