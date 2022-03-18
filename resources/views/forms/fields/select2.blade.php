@@ -39,6 +39,10 @@
                 var data = $('#select2-dropdown-{{ str_replace('.','-', $keyPath) }}').select2("val");
                 $('#select2-dropdown-{{ str_replace('.','-', $keyPath) }}-target').val(data);
             });
+            jQuery('#select2-dropdown-{{ str_replace('.','-', $keyPath) }}').on('select2:open', function(e) {
+                jQuery('input.select2-search__field')
+                    .prop('placeholder', '{{ isset($config["placeholder"]) ? $config["placeholder"] : "Tippen um zu filtern..." }}');
+            });
         });
     </script>
 @endpush
