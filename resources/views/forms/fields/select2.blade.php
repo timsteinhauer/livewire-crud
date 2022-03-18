@@ -37,7 +37,7 @@
             jQuery('#select2-dropdown-{{ str_replace('.','-', $keyPath) }}').select2();
             jQuery('#select2-dropdown-{{ str_replace('.','-', $keyPath) }}').on('change', function (e) {
                 var data = $('#select2-dropdown-{{ str_replace('.','-', $keyPath) }}').select2("val");
-                $('#select2-dropdown-{{ str_replace('.','-', $keyPath) }}-target').val(data);
+                @this.set('{{ $keyPath }}', data);
             });
             jQuery('#select2-dropdown-{{ str_replace('.','-', $keyPath) }}').on('select2:open', function(e) {
                 jQuery('input.select2-search__field')
