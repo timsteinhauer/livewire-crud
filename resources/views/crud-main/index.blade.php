@@ -5,15 +5,25 @@
 
         @if( $pageStyle == "page")
             {{-- use a page layout for the hole crud module --}}
-            @include($path. ".views.page")
+            @includeFirst([
+                    $childPath .".views.page",
+                    $path. ".views.page"
+                    ])
 
         @else
             {{-- use a page layout for the index page --}}
-            @include($path. ".views.page", ["currentPage" => "index"])
+            @includeFirst([
+                        $childPath .".views.page",
+                        $path. ".views.page"
+                        ], ["currentPage" => "index"])
+
 
             @if( $currentPage != "index")
                 {{-- use a modal layout for the subpages --}}
-                @include($path. ".views.modal")
+                @includeFirst([
+                        $childPath .".views.modal",
+                        $path. ".views.modal"
+                        ])
             @endif
         @endif
     </div>

@@ -8,7 +8,10 @@
 
                 {!! $styling["modal_body_start"] !!}
 
-                @include($path. ".pages.". $currentPage)
+                @includeFirst([
+                        $childPath .".pages.". $currentPage,
+                        $path. ".pages.". $currentPage
+                        ])
 
                 {!! $styling["modal_body_end"] !!}
             </div>

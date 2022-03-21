@@ -1,5 +1,7 @@
 <div class="-view-page -model-{{ $model }} -page-{{ $currentPage }}">
 
-    @include($path. ".pages.". $currentPage)
-
+    @includeFirst([
+                        $childPath .".pages.". $currentPage,
+                        $path. ".pages.". $currentPage
+                        ])
 </div>
