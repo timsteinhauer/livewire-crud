@@ -5,7 +5,7 @@
             <button class="btn btn-sm btn-secondary mr-3" wire:click="openIndex()">
                 <i class="bi bi-arrow-left-short"></i>
             </button>
-            <h5 class="card-title mb-0">{{ $wordings["names"] }} {{ $wordings[$currentPage]["headline"] }}</h5>
+            <h5 class="card-title mb-0">{{ $wordings["name"] }} {{ $wordings[$currentPage]["headline"] }}</h5>
         </div>
         <div class="card-body">
             @yield('crud-page')
