@@ -615,11 +615,11 @@ class CrudMain extends Component
      * @param $key
      * @param $type
      * @param $title
-     * @param array|string $rules or ["edit" => [] || "", "create" => "" || []]
+     * @param array $rules or ["edit" => [] || "", "create" => "" || []]
      * @param $config
      * @return void
      */
-    protected function addFormField($key, $type, $title, array|string $rules = [], $config = []): void
+    protected function addFormField($key, $type, $title, array $rules = [], $config = []): void
     {
         if (isset($rules["create"]) && !is_array($rules["create"])) {
             dd("Die Angabe der rules für das Feld " . $title . " muss unter dem Key create als Array erfolgen!");
