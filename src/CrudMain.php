@@ -1434,7 +1434,10 @@ class CrudMain extends Component
     {
 
         foreach ($this->filterConfigs as $filterKey => $filterConfig) {
-            $this->filter[$filterKey] = $filterConfig["default"];
+            // only fill at the first run
+            if( !isset($this->filter[$filterKey]) ){
+                $this->filter[$filterKey] = $filterConfig["default"];
+            }
         }
     }
 
