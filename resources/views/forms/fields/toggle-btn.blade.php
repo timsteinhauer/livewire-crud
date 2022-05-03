@@ -1,13 +1,13 @@
-<div class="input-group  mb-3 {{ $config["class"] ?? "" }}" style="{{ $config["style"] ?? "" }}">
+<div class="input-group mb-3 {{ $config["class"] ?? "" }}" style="flex-wrap: nowrap; {{ $config["style"] ?? "" }}">
 
     <input type="checkbox"
-           style="width: 30px"
-           class=" align-self-center @error($keyPath) is-invalid @enderror"
+           style="height: auto; width: auto" id="{{ $keyPath }}"
+           class="flex-grow-1 px-3 @error($keyPath) is-invalid @enderror"
            wire:model.debounce.500ms="{{ $keyPath }}"
-           {{ isset($config["required"]) && $config["required"] ? "required" : "" }}
-           {{ isset($config["disabled"]) && $config["disabled"] ? "disabled" : "" }}>
+            {{ isset($config["required"]) && $config["required"] ? "required" : "" }}
+            {{ isset($config["disabled"]) && $config["disabled"] ? "disabled" : "" }}>
 
-    <span class="input-group-text flex-grow-1">{{ $title }}</span>
+    <label class="input-group-text flex-grow-1" for="{{ $keyPath }}">{{ $title }}</label>
 
     @error($keyPath)
     <div class="invalid-feedback">

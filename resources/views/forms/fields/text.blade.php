@@ -1,8 +1,8 @@
 <div class="input-group mb-3 {{ $config["class"] ?? "" }}" style="{{ $config["style"] ?? "" }}">
 
-    <span class="input-group-text">{{ $title }}</span>
+    <label class="input-group-text" for="{{ $keyPath }}">{{ $title }}</label>
 
-    <input type="text"
+    <input type="text" id="{{ $keyPath }}"
            class="form-control @error($keyPath) is-invalid @enderror"
            wire:model.debounce.500ms="{{ $keyPath }}"
            {{ isset($config["required"]) && $config["required"] ? "required" : "" }}

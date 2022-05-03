@@ -1,8 +1,8 @@
 <div class="input-group mb-3 {{ $config["class"] ?? "" }}" style="{{ $config["style"] ?? "" }}">
 
-    <span class="input-group-text">{{ $title }}</span>
+    <label class="input-group-text" for="{{ $keyPath }}">{{ $title }}</label>
 
-    <div class="d-flex border align-items-center flex-1 @error($keyPath) is-invalid @enderror">
+    <div class="d-flex border align-items-center flex-1 @error($keyPath) is-invalid @enderror" id="{{ $keyPath }}">
         @foreach($config["options"] as $option)
 
             @if( isset($form[$key][$option["id"]]) && $form[$key][$option["id"]] )
