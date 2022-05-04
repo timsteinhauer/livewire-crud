@@ -1,6 +1,6 @@
 
 @php( $select2Name = str_replace('.','', str_replace('_','', $keyPath)))
-<div class="input-group mb-3 {{ $config["class"] ?? "" }}" style="{{ $config["style"] ?? "" }}">
+<div class="input-group {{ $config["class"] ?? "mb-3" }}" style="{{ $config["style"] ?? "" }}">
 
     <script wire:ignore>
         var select2Options{{ $select2Name }} =

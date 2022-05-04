@@ -1,4 +1,4 @@
-<div class="input-group mb-3 {{ $config["class"] ?? "" }}" style="{{ $config["style"] ?? "" }}">
+<div class="input-group {{ $config["class"] ?? "mb-3" }}" style="{{ $config["style"] ?? "" }}">
 
     <label class="input-group-text" for="{{ $keyPath }}">{{ $title }}</label>
 

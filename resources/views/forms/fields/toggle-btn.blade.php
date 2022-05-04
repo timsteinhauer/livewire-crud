@@ -1,7 +1,7 @@
-<div class="input-group mb-3 {{ $config["class"] ?? "" }}" style="flex-wrap: nowrap; {{ $config["style"] ?? "" }}">
+<div class="input-group {{ $config["class"] ?? "mb-3" }}" style="flex-wrap: nowrap; {{ $config["style"] ?? "" }}">
 
     <input type="checkbox"
-           style="height: auto; width: auto" id="{{ $keyPath }}"
+           style="height: auto; width: auto; max-width: 35px;" id="{{ $keyPath }}"
            class="flex-grow-1 px-3 @error($keyPath) is-invalid @enderror"
            wire:model.debounce.500ms="{{ $keyPath }}"
             {{ isset($config["required"]) && $config["required"] ? "required" : "" }}
