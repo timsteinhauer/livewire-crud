@@ -2,7 +2,7 @@
 
     <label class="input-group-text" for="{{ $keyPath }}">{!! $title !!}</label>
 
-    <input type="text" id="{{ $keyPath }}"
+    <input type="date" id="{{ $keyPath }}"
            class="form-control @error($keyPath) is-invalid @enderror"
            wire:model.debounce.500ms="{{ $keyPath }}"
            {{ isset($config["required"]) && $config["required"] ? "required" : "" }}
@@ -14,8 +14,8 @@
     @endif
 
     @error($keyPath)
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
+    <div class="invalid-feedback">
+        {{ $message }}
+    </div>
     @enderror
 </div>

@@ -1,6 +1,6 @@
 <div class="input-group {{ $config["class"] ?? "mb-3" }}" style="{{ $config["style"] ?? "" }}">
 
-    <label class="input-group-text" for="{{ $keyPath }}">{{ $title }}</label>
+    <label class="input-group-text" for="{{ $keyPath }}">{!! $title !!}</label>
 
     <div class="d-flex border align-items-center flex-1 @error($keyPath) is-invalid @enderror" id="{{ $keyPath }}">
         @foreach($config["options"] as $option)

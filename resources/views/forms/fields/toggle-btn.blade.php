@@ -7,7 +7,7 @@
             {{ isset($config["required"]) && $config["required"] ? "required" : "" }}
             {{ isset($config["disabled"]) && $config["disabled"] ? "disabled" : "" }}>
 
-    <label class="input-group-text flex-grow-1" for="{{ $keyPath }}">{{ $title }}</label>
+    <label class="input-group-text flex-grow-1" for="{{ $keyPath }}">{!! $title !!}</label>
 
     @error($keyPath)
     <div class="invalid-feedback">
