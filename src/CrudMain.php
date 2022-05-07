@@ -259,11 +259,11 @@ class CrudMain extends Component
     //
     public array $perPageConfig = [
         ["value" => "10", "name" => "10"],
-        ["value" => "25", "name" => "25"],
+        ["value" => "20", "name" => "20"],
+        ["value" => "30", "name" => "30"],
         ["value" => "50", "name" => "50"],
+        ["value" => "80", "name" => "80"],
         ["value" => "100", "name" => "100"],
-        ["value" => "250", "name" => "250"],
-        ["value" => "0", "name" => "Alle"],
     ];
 
 
