@@ -205,6 +205,10 @@ class CrudMain extends Component
             "headline" => "archivieren",
             "message" => "Der Datensatz <b>:name</b> wird archiviert.",
             "submit_btn" => "Archivieren",
+            "filter_name" => "Archiv",
+            "archived" => "Archiviert",
+            "archived_not" => "Nicht archiviert",
+            "archived_all" => "Alle",
         ],
         "restore" => [
             "headline" => "wiederherstellen",
@@ -499,9 +503,9 @@ class CrudMain extends Component
 
 
     // System-wide global helper Function to prepend an empty entry to a config array for select-form fields
-    public static function withEmptySelect($array): array
+    public static function withEmptySelect($array, $name = "-"): array
     {
-        return array_merge([["id" => null, "name" => "-"]], $array);
+        return array_merge([["id" => null, "name" => $name]], $array);
     }
 
     //
@@ -1027,6 +1031,9 @@ class CrudMain extends Component
         // set form default selections
         $this->fillFormDefaults();
 
+        // handel soft delete init
+        $this->initSoftDelete();
+
         // set filter defaults
         $this->fillFilterDefaults();
 
@@ -1439,6 +1446,29 @@ class CrudMain extends Component
                 $this->filter[$filterKey] = $filterConfig["default"];
             }
         }
+    }
+
+    //
+    // prepare soft delete filter
+    //
+    protected function initSoftDelete(): void
+    {
+        if (!$this->useSoftDeleting) {
+            return;
+        }
+
+        $this->addFilter(
+            "deleted_at",
+            "select",
+            $this->wordings["soft_delete"]["filter_name"],
+            $this->withEmptySelect(
+                [
+                    ["id" => "not-null", "name" => $this->wordings["soft_delete"]["archived"]],
+                    ["id" => "null", "name" => $this->wordings["soft_delete"]["archived_not"]],
+                ], $this->wordings["soft_delete"]["archived_all"]
+            ),
+            "null",
+        );
     }
 
     // End of:  Mounting Section
