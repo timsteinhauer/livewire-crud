@@ -1,6 +1,6 @@
 <div class="input-group {{ $config["class"] ?? "mb-3" }}" style="{{ $config["style"] ?? "" }}">
 
-    <label class="input-group-text" for="{{ $keyPath }}">{!! $title !!}</label>
+    <label class="input-group-text {{ isset($config["required"]) && $config["required"] ? "-required" : "" }}" for="{{ $keyPath }}">{!! $title !!}</label>
 
     <input type="text" id="{{ $keyPath }}"
            class="form-control @error($keyPath) is-invalid @enderror"

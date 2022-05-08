@@ -9,7 +9,7 @@
                 @endforeach ];
     </script>
 
-    <label class="input-group-text" for="{{ $keyPath }}">{!! $title !!}</label>
+    <label class="input-group-text {{ isset($config["required"]) && $config["required"] ? "-required" : "" }}" for="{{ $keyPath }}">{!! $title !!}</label>
 
     <div wire:ignore class="flex-1 ts-lw-crud-select2-wrapper">
         <select id="select2-dropdown-{{ $select2Name }}" id="{{ $keyPath }}"
