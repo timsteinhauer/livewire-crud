@@ -3,17 +3,22 @@
 @section("crud-page")
     <div class="-delete-wrapper">
 
-        @if( $useSoftDeleting )
-
-            <div class="alert {{ $styling["soft_delete"]["message"] }}">
-                {!! $this->insertName($wordings["soft_delete"]["message"]) !!}
-            </div>
-
+        @if( \View::exists($childPath .'.forms.delete-form') )
+            @includeIf($childPath .".forms.delete-form")
         @else
 
-            <div class="alert {{ $styling["delete"]["message"] }}">
-                {!! $this->insertName($wordings["delete"]["message"]) !!}
-            </div>
+            @if( $useSoftDeleting )
+
+                <div class="alert {{ $styling["soft_delete"]["message"] }}">
+                    {!! $this->insertName($wordings["soft_delete"]["message"]) !!}
+                </div>
+
+            @else
+
+                <div class="alert {{ $styling["delete"]["message"] }}">
+                    {!! $this->insertName($wordings["delete"]["message"]) !!}
+                </div>
+            @endif
         @endif
     </div>
 @endsection
