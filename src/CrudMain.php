@@ -514,7 +514,7 @@ class CrudMain extends Component
     public function insertName(string $string)
     {
 
-        if ( method_exists($this, "getItemIdentifier") ) {
+        if ( method_exists($this, "getItemName") ) {
             return str_replace(":name", $this->getItemName($this->form), $string);
         }
 
